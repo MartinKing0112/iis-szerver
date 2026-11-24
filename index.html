@@ -1,0 +1,581 @@
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web- és FTP-szerver dokumentáció</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0b1120;
+    color: #e2e8f0;
+    line-height: 1.7;
+}
+
+header {
+    background: #111c30;
+    border-bottom: 1px solid #263750;
+    padding: 20px 8%;
+}
+
+.logo {
+    color: #60a5fa;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+nav {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav a {
+    color: #aabbd0;
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #60a5fa;
+}
+
+.container {
+    max-width: 1050px;
+    margin: auto;
+    padding: 40px 25px;
+}
+
+.hero {
+    padding: 55px 0;
+    border-bottom: 1px solid #263750;
+}
+
+.tag {
+    color: #60a5fa;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 38px;
+    color: #f1f5f9;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    color: #94a3b8;
+    max-width: 700px;
+}
+
+.author {
+    margin-top: 25px;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.info-card {
+    background: #142138;
+    border: 1px solid #263750;
+    border-radius: 10px;
+    padding: 18px;
+}
+
+.info-card span {
+    display: block;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.info-card strong {
+    color: #dbeafe;
+}
+
+section {
+    padding: 65px 0;
+    border-bottom: 1px solid #263750;
+    scroll-margin-top: 20px;
+}
+
+.section-number {
+    color: #60a5fa;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+h2 {
+    font-size: 28px;
+    color: #f1f5f9;
+    margin-bottom: 12px;
+}
+
+.section-intro {
+    color: #94a3b8;
+    margin-bottom: 35px;
+}
+
+h3 {
+    font-size: 19px;
+    color: #bfdbfe;
+    margin: 30px 0 10px;
+}
+
+p {
+    color: #b5c3d5;
+    margin-bottom: 15px;
+}
+
+.image-box {
+    margin: 25px 0;
+    background: #142138;
+    border: 1px solid #263750;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.image-box img {
+    display: block;
+    width: 100%;
+    max-height: 480px;
+    object-fit: contain;
+    background: #080e1a;
+}
+
+.image-box figcaption {
+    padding: 13px 18px;
+    font-size: 13px;
+    color: #94a3b8;
+    border-top: 1px solid #263750;
+}
+
+.note {
+    background: #172943;
+    border-left: 3px solid #60a5fa;
+    padding: 17px 20px;
+    margin: 25px 0;
+    border-radius: 5px;
+    color: #bfdbfe;
+}
+
+.code-example {
+    background: #080e1a;
+    border: 1px solid #263750;
+    padding: 18px;
+    border-radius: 8px;
+    color: #7dd3fc;
+    font-family: monospace;
+    margin: 20px 0;
+}
+
+ul {
+    padding-left: 25px;
+    color: #b5c3d5;
+}
+
+li {
+    margin: 9px 0;
+}
+
+footer {
+    text-align: center;
+    padding: 35px 15px;
+    color: #64748b;
+    font-size: 13px;
+}
+
+@media (max-width: 650px) {
+    h1 {
+        font-size: 29px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        gap: 12px;
+    }
+
+    .container {
+        padding: 25px 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">⌘ IT PROJEKT / DOKUMENTÁCIÓ</div>
+
+    <nav>
+        <a href="#attekintes">Projekt</a>
+        <a href="#iis">IIS telepítés</a>
+        <a href="#weboldal">Weboldal és DNS</a>
+        <a href="#ftp">FTP konfiguráció</a>
+        <a href="#teszt">FTP tesztelés</a>
+        <a href="#osszegzes">Összegzés</a>
+    </nav>
+</header>
+
+<main class="container">
+
+<!-- NYITÓOLDAL -->
+
+<div class="hero" id="attekintes">
+
+    <div class="tag">SERVER DOCUMENTATION · 2026</div>
+
+    <h1>Web- és FTP-szerver konfiguráció</h1>
+
+    <p>
+        Windows Server 2022 és IIS 10.0 alapú webszerver-környezet
+        kialakításának, konfigurálásának és ellenőrzésének
+        dokumentációja.
+    </p>
+
+    <div class="author">
+        Készítette: Saját név · 2026 · Gyakorlati projekt
+    </div>
+
+    <div class="info-grid">
+
+        <div class="info-card">
+            <span>Operációs rendszer</span>
+            <strong>Windows Server 2022</strong>
+        </div>
+
+        <div class="info-card">
+            <span>Webszerver</span>
+            <strong>IIS 10.0</strong>
+        </div>
+
+        <div class="info-card">
+            <span>Szolgáltatások</span>
+            <strong>HTTP · DNS · FTP</strong>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- 01 IIS TELEPÍTÉS -->
+
+<section id="iis">
+
+    <div class="section-number">01</div>
+
+    <h2>IIS szerepkör telepítése</h2>
+
+    <p class="section-intro">
+        A webszerver-szolgáltatás előkészítése
+        Windows Server környezetben.
+    </p>
+
+    <h3>1.1. A Server Manager megnyitása</h3>
+
+    <p>
+        A Server Manager felületén az Add Roles and Features
+        varázsló segítségével lehet új kiszolgálói
+        szerepköröket telepíteni. A telepítés előtt
+        ellenőrizni kell, hogy a megfelelő szerver van
+        kiválasztva.
+    </p>
+
+    <figure class="image-box">
+        <!-- 02. KÉP FORRÁSA -->
+        <img src="kepek/iis1.png" alt="Server Manager">
+        <figcaption>
+            1. kép – Windows Server Server Manager
+        </figcaption>
+    </figure>
+
+    <h3>1.2. Web Server (IIS) kiválasztása</h3>
+
+    <p>
+        A szerepkörök listájában ki kell választani a
+        Web Server (IIS) elemet. A szükséges kezelőeszközöket
+        és függőségeket a telepítő felajánlja.
+    </p>
+
+    <figure class="image-box">
+        <!-- 03. KÉP FORRÁSA -->
+        <img src="kepek/iis2.png" alt="IIS szerepkör kiválasztása">
+        <figcaption>
+            2. kép – A Web Server (IIS) szerepkör kijelölése
+        </figcaption>
+    </figure>
+
+    <div class="note">
+        Megjegyzés: A telepítés során érdemes ellenőrizni,
+        hogy minden szükséges szerepkör-szolgáltatás
+        megfelelően ki van-e választva.
+    </div>
+
+</section>
+
+
+<!-- 02 WEBOLDAL ÉS DNS -->
+
+<section id="weboldal">
+
+    <div class="section-number">02</div>
+
+    <h2>Weboldal és DNS konfiguráció</h2>
+
+    <p class="section-intro">
+        Az alapértelmezett webhely ellenőrzése,
+        saját tesztoldal beállítása és DNS-konfiguráció.
+    </p>
+
+    <h3>2.1. Alapértelmezett webhely</h3>
+
+    <p>
+        Az IIS Managerben található Default Web Site
+        alapértelmezett HTTP-kötése általában a 80-as
+        portot használja. A webhely állapota és fizikai
+        könyvtára a kezelőfelületen ellenőrizhető.
+    </p>
+
+    <figure class="image-box">
+        <!-- 04. KÉP FORRÁSA -->
+        <img src="kepek/iis3.webp" alt="Default Web Site">
+        <figcaption>
+            3. kép – IIS Manager: Default Web Site
+        </figcaption>
+    </figure>
+
+    <h3>2.2. Egyedi tesztoldal létrehozása</h3>
+
+    <p>
+        A webhely gyökérkönyvtárába elhelyezhető egy
+        egyszerű index.html fájl. A fájl módosítása után
+        böngészőből ellenőrizhető, hogy az IIS a saját
+        weboldalt jeleníti-e meg.
+    </p>
+
+    <figure class="image-box">
+        <!-- 05. KÉP FORRÁSA -->
+        <img src="kepek/iis4.png" alt="IIS telepítés">
+        <figcaption>
+            4. kép – IIS szerepkör-szolgáltatások
+        </figcaption>
+    </figure>
+
+    <h3>2.3. DNS A-rekord beállítása</h3>
+
+    <p>
+        A DNS-kezelőben A-rekord rendelhető a választott
+        domainnévhez. Ez a rekord a domain nevet
+        a webszerver IPv4-címére irányítja.
+    </p>
+
+    <div class="code-example">
+        Típus: A<br>
+        Név: www.pelda.local<br>
+        Cél: szerver IPv4-címe
+    </div>
+
+    <figure class="image-box">
+        <!-- 06. KÉP FORRÁSA -->
+        <img src="kepek/iis5.jpg" alt="DNS A rekord">
+        <figcaption>
+            5. kép – DNS-rekord beállítása
+        </figcaption>
+    </figure>
+
+</section>
+
+
+<!-- 03 FTP KONFIGURÁCIÓ -->
+
+<section id="ftp">
+
+    <div class="section-number">03</div>
+
+    <h2>FTP szerver konfigurációja</h2>
+
+    <p class="section-intro">
+        Az FTP-szolgáltatás telepítése,
+        a kapcsolati beállítások és a jogosultságok kezelése.
+    </p>
+
+    <h3>3.1. FTP-szolgáltatás telepítése</h3>
+
+    <p>
+        Az IIS szerepkör-szolgáltatásai között az FTP Server
+        elemeit kell engedélyezni. Ezután az IIS Managerben
+        létrehozható egy FTP Site, amelyhez meg kell adni
+        a tartalom könyvtárát és a kapcsolódási beállításokat.
+    </p>
+
+    <figure class="image-box">
+        <!-- 07. KÉP FORRÁSA -->
+        <img src="kepek/iis6.webp" alt="FTP Server telepítése">
+        <figcaption>
+            6. kép – FTP Server szerepkör kiválasztása
+        </figcaption>
+    </figure>
+
+    <figure class="image-box">
+        <!-- 08. KÉP FORRÁSA -->
+        <img src="kepek/iis7.webp" alt="FTP telepítés megerősítése">
+        <figcaption>
+            7. kép – FTP Server összetevők telepítése
+        </figcaption>
+    </figure>
+
+    <h3>3.2. Kötések és hitelesítés</h3>
+
+    <p>
+        A kapcsolati beállításoknál meg kell adni az IP-címet,
+        a portot és szükség esetén az SSL használatát.
+        Az Authentication résznél kiválasztható az
+        Anonymous vagy a Basic hitelesítés.
+    </p>
+
+    <figure class="image-box">
+        <!-- 09. KÉP FORRÁSA -->
+        <img src="kepek/iis8.webp" alt="FTP Site beállítása">
+        <figcaption>
+            8. kép – FTP Site neve és fizikai könyvtára
+        </figcaption>
+    </figure>
+
+    <div class="note">
+        Biztonsági szempontból éles környezetben
+        titkosított kapcsolat (FTPS), erős jelszavak
+        és megfelelően korlátozott felhasználói
+        jogosultságok használata ajánlott.
+    </div>
+
+</section>
+
+
+<!-- 04 FTP TESZTELÉS -->
+
+<section id="teszt">
+
+    <div class="section-number">04</div>
+
+    <h2>FTP kapcsolat tesztelése</h2>
+
+    <p class="section-intro">
+        A kliensoldali csatlakozás és az adatátvitel ellenőrzése.
+    </p>
+
+    <h3>4.1. FTP-kötés beállítása</h3>
+
+    <p>
+        Az FTP Site varázslóban meg kell adni a kiszolgáló
+        IP-címét, a 21-es portot, valamint az SSL
+        használatát. A beállítások után a szolgáltatás
+        elindítható.
+    </p>
+
+    <figure class="image-box">
+        <!-- 10. KÉP FORRÁSA -->
+        <img src="kepek/iis9.webp" alt="FTP kötés beállítása">
+        <figcaption>
+            9. kép – FTP Site kötési és SSL-beállításai
+        </figcaption>
+    </figure>
+
+    <h3>4.2. Hitelesítés és jogosultságok</h3>
+
+    <p>
+        A Basic hitelesítés felhasználói fiókot igényel.
+        Csak a szükséges felhasználóknak érdemes olvasási
+        vagy írási jogosultságot adni. A hozzáféréseket
+        az Authorization Rules résznél lehet szabályozni.
+    </p>
+
+    <figure class="image-box">
+        <!-- 11. KÉP FORRÁSA -->
+        <img src="kepek/iis10.webp" alt="FTP hitelesítés">
+        <figcaption>
+            10. kép – FTP hitelesítés és hozzáférési jogosultságok
+        </figcaption>
+    </figure>
+
+</section>
+
+
+<!-- 05 ÖSSZEGZÉS -->
+
+<section id="osszegzes">
+
+    <div class="section-number">05</div>
+
+    <h2>Ellenőrzés és összegzés</h2>
+
+    <p class="section-intro">
+        A konfiguráció fontosabb ellenőrzési pontjai.
+    </p>
+
+    <p>
+        A dokumentáció bemutatja egy Windows Server
+        alapú webszerver és FTP-szolgáltatás kialakításának
+        főbb lépéseit.
+    </p>
+
+    <p>
+        A tényleges működés igazolásához az alábbi
+        ellenőrzéseket kell elvégezni:
+    </p>
+
+    <ul>
+        <li>Az IIS szerepkör és a szükséges szolgáltatások telepítve vannak.</li>
+        <li>A webhely fut, és a tesztoldal böngészőből megnyitható.</li>
+        <li>A DNS-rekord a megfelelő szervercímre mutat.</li>
+        <li>Az FTP-kapcsolat a beállított hitelesítéssel létrejön.</li>
+        <li>A feltöltés és letöltés a jogosultságoknak megfelelően működik.</li>
+    </ul>
+
+    <div class="note">
+        A sikeres konfiguráció után a webszerver és az
+        FTP-szolgáltatás működése a saját tesztkörnyezetben
+        ellenőrizhető.
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+    Készítette: Saját név · Web- és FTP-szerver konfiguráció · 2026
+    <br>
+    Windows Server 2022 · IIS 10.0
+    <br><br>
+    <a href="#attekintes" style="color:#60a5fa;text-decoration:none;">
+        ↑ Vissza az oldal tetejére
+    </a>
+</footer>
+
+</body>
+</html>
